@@ -5,7 +5,7 @@ Please ensure your are authorized to use Shalla's Blacklists per the license pag
 
 To use this utility: 
 1. Download the the latest blacklist archive from http://www.shallalist.de/
-2. Extract archive to folder.
+2. Extract archive to a directory.
 3. Place this script in the same directory as the BL directory.
 4. Run the script with Python 3.
 
