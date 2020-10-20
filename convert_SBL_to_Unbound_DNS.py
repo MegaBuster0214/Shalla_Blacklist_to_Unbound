@@ -36,9 +36,10 @@ for item in os.listdir(sbl_cat_root):  # Iterate through items in 'BL/'
                     # needed on the list.
 
 # Now that the category list is complete, we will create the Unbound include
-# files and populate domains from the SBL 'domain' file for each category into
-# a format Unbound can recognize. This format consists of taking the domain
-# and redirecting to LOCALHOST (127.0.0.1).
+# files and populate domains from the SBL 'domains' file for each category into
+# a format Unbound can recognize:
+# local-zone: "domain.com" redirect
+# local-data: "domain.com A 127.0.0.1"
 
 # Check to see if the destination directory for the Unbound include files is
 # present. If False, create it.
@@ -46,19 +47,24 @@ include_dirname = "include_files"
 if os.path.isdir(include_dirname) is False:
     os.mkdir(include_dirname)
 
-
+# Create a dictionary that will store the location of 'domains' file as the key
+# and the new location of the include file as the value.
 domains_file_location_dict = {}
 for category in sbl_cat_list:
     new_include_file = include_dirname + '/unbound_' + category + '_servers'
     include_file_path = os.path.join(include_dirname, new_include_file)
-    if '_' not in category:
+    if '_' not in category:  # First, add the categories to the dictionary.
         source = 'BL/' + category + '/domains'
         domains_file_location_dict[source] = new_include_file
-    else:
+    else:  # Next, add the subcategories to the dictionary.
         source_list = category.split('_')
         source = 'BL/' + source_list[0] + '/' + source_list[1] + '/domains'
         domains_file_location_dict[source] = new_include_file
 
+# Finally, open both the SBL 'domains' file and the new file for Unbound.
+# Get each domain from the 'domains' file and wrap it in the redirect
+# statements for unbound.
+# Write each statement to the new file for Unbound.
 for src, dst in domains_file_location_dict.items():
     source_file = open(src, 'r')
     dest_file = open(dst, 'w')
@@ -67,7 +73,3 @@ for src, dst in domains_file_location_dict.items():
                         '" redirect' + '\n')
         dest_file.write('local-data: "' + domain.replace('\n', '') +
                         ' A 127.0.0.1"' + '\n')
-
-
-# local-zone: "domain.com" redirect
-# local-data: "domain.com A 127.0.0.1"
