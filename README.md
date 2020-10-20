@@ -1,4 +1,4 @@
-# Shalla_Blacklist_to_Unbound
+# Convert Shalla's Blacklist into blocklists for Unbound
 Convert Shalla's Blacklist files into blocklists for Unbound DNS server
 
 Please ensure your are authorized to use Shalla's Blacklists per the license page.  http://www.shallalist.de/licence.html
