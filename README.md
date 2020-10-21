@@ -13,7 +13,7 @@ To use this utility:
 After the script runs you should have a new directory named 'include_files'. 
 This directory will contain blocklists based on each category from the Shalla blacklist archive.
 
-To use these blocklists in Unbound simply copy them to your Unbound servern then add the following to your Unbound configuration file:
+To use these blocklists in Unbound simply copy them to your Unbound server then add the following to your Unbound configuration file for each blocklist that you would like to use:
 
 include: "<path/to/blocklist>"
 
