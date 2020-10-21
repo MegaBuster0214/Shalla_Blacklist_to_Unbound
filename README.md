@@ -1,6 +1,6 @@
 # Convert Shalla's Blacklist into blocklists for Unbound
 This tool will convert Shalla's Blacklist files into blocklists for Unbound DNS server. The goal of making this tool is to allow for simple web content filtering 
-through DNS instead of a proxy server. This in turn allows for URL filtering regardless of protocol (HTTP, HTTPS).
+through DNS instead of a proxy server. This in turn allows for URL filtering regardless of protocol (HTTP, HTTPS). (Ensure DNS over HTTPS is disabled on your web browser to allow use of your local Unbound DNS Server.)
 
 Please ensure your are authorized to use Shalla's Blacklists per the license page.  http://www.shallalist.de/licence.html
 
